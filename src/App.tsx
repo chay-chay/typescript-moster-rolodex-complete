@@ -2,17 +2,23 @@ import React, { Component } from 'react';
 
 import { CardList } from './components/card-list/card-list.component';
 import { SearchBox } from './components/search-box/search-box.component';
-
+import { MonsterType } from './components/card/card.component'
 import './App.css';
 
-class App extends Component {
-  constructor() {
-    super();
+// type MyProps = {
+//   // using `interface` is also ok
+//   message: string;
+// };
+type MyState = {
+  monsters: MonsterType[]; // like this
+  searchField: string;
+};
 
-    this.state = {
+
+class App extends Component<{}, MyState> {
+    state: MyState = {
       monsters: [],
       searchField: ''
-    };
   }
 
   componentDidMount() {
@@ -21,7 +27,8 @@ class App extends Component {
       .then(users => this.setState({ monsters: users }));
   }
 
-  onSearchChange = event => {
+  onSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // on click - React.MouseEvent
     this.setState({ searchField: event.target.value });
   };
 

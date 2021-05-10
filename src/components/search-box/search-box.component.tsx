@@ -2,7 +2,12 @@ import React from 'react';
 
 import './search-box.styles.css';
 
-export const SearchBox = props => (
+interface Props {
+  onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+   // added parameter and no return
+}
+
+export const SearchBox:React.FC<Props> = props => (
   <input
     className='search-box'
     type='search'
